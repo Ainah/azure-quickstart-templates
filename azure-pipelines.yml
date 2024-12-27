@@ -5,6 +5,8 @@
 
 variables:
   ARM_PASS: $(adminPass)
+  siteName: $(siteName)
+  adminUser: $(adminUser)
 
 trigger:
 - none
@@ -18,6 +20,7 @@ steps:
     SourceFolder: 'quickstarts/microsoft.web/webapp-linux-managed-mysql/'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
     deploymentScope: 'Resource Group'
@@ -27,7 +30,7 @@ steps:
     resourceGroupName: 'webapp-rgm'
     location: 'West US 2'
     templateLocation: 'Linked artifact'
-    csmFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.json'
+    csmFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.jso'
     csmParametersFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.parameters.json'
     overrideParameters: '-siteName $(siteName) -administratorLogin $(adminUser) -administratorLoginPassword $(ARM_PASS)'
     deploymentMode: 'Incremental'
