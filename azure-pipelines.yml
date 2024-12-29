@@ -20,6 +20,11 @@ steps:
     SourceFolder: 'quickstarts/microsoft.web/webapp-linux-managed-mysql/'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- script: |
+    echo "Listing files in $(Build.ArtifactStagingDirectory)"
+    ls -R $(Build.ArtifactStagingDirectory)
+  displayName: 'Vérification des fichiers copiés'
     
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
