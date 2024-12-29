@@ -35,7 +35,7 @@ steps:
     resourceGroupName: 'webapp-rgm'
     location: 'West US 2'
     templateLocation: 'Linked artifact'
-    csmFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.jso'
+    csmFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.json'
     csmParametersFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.parameters.json'
     overrideParameters: '-siteName $(siteName) -administratorLogin $(adminUser) -administratorLoginPassword $(ARM_PASS)'
     deploymentMode: 'Incremental'
